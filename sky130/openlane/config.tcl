@@ -8,23 +8,6 @@ set ::env(DEF_UNITS_PER_MICRON) 1000
 set ::env(VDD_PIN) "VPWR"
 set ::env(GND_PIN) "VGND"
 
-# Technology LEF
-#ifdef EF_FORMAT
-set ::env(TECH_LEF) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/techLEF/$::env(STD_CELL_LIBRARY)/$::env(STD_CELL_LIBRARY).tlef"
-set ::env(CELLS_LEF) [glob "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/lef/$::env(STD_CELL_LIBRARY)/*.lef"]
-set ::env(GDS_FILES) [glob "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/gds/$::env(STD_CELL_LIBRARY)/*.gds"]
-
-set ::env(GPIO_PADS_LEF) "\
-	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/lef/sky130_fd_io/sky130_fd_io.lef\
-	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/lef/sky130_fd_io/sky130_ef_io.lef\
-	"
-# sky130_fd_io.v is not parsable by yosys, so it cannot be included it here yet...
-set ::env(GPIO_PADS_VERILOG) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/verilog/sky130_fd_io/sky130_ef_io.v"
-set ::env(GPIO_PADS_VERILOG) "\
-	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/verilog/sky130_fd_io/sky130_ef_io.v\
-	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/verilog/sky130_fd_io/sky130_ef_io__gpiov2_pad_wrapped.v\
-	"
-#else (!EF_FORMAT)
 set ::env(TECH_LEF) "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/techlef/$::env(STD_CELL_LIBRARY).tlef"
 set ::env(CELLS_LEF) [glob "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/lef/*.lef"]
 set ::env(GDS_FILES) [glob "$::env(PDK_ROOT)/$::env(PDK)/libs.ref/$::env(STD_CELL_LIBRARY)/gds/*.gds"]
@@ -38,7 +21,6 @@ set ::env(GPIO_PADS_VERILOG) "\
 	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sky130_fd_io/verilog/sky130_ef_io.v\
 	$::env(PDK_ROOT)/$::env(PDK)/libs.ref/sky130_fd_io/verilog/sky130_ef_io__gpiov2_pad_wrapped.v\
 	"
-#endif (!EF_FORMAT)
 
 set ::env(GPIO_PADS_LEF_CORE_SIDE) "\
 	$::env(PDK_ROOT)/$::env(PDK)/libs.tech/openlane/custom_cells/lef/sky130_fd_io_core.lef\
@@ -46,13 +28,8 @@ set ::env(GPIO_PADS_LEF_CORE_SIDE) "\
 	"
 
 # magic setup
-#ifdef EF_FORMAT
-set ::env(MAGIC_MAGICRC) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/magic/20200508/TECHNAME.magicrc"
-set ::env(MAGIC_TECH_FILE) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/magic/20200508/TECHNAME.tech"
-#else (!EF_FORMAT)
 set ::env(MAGIC_MAGICRC) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/magic/TECHNAME.magicrc"
 set ::env(MAGIC_TECH_FILE) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/magic/TECHNAME.tech"
-#endif (!EF_FORMAT)
 
 # Klayout setup
 set ::env(KLAYOUT_TECH) "$::env(PDK_ROOT)/$::env(PDK)/libs.tech/klayout/$::env(PDK).lyt"

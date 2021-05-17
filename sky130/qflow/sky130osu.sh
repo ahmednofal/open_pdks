@@ -6,36 +6,20 @@
 
 # The LEF file containing standard cell macros
 
-#ifdef EF_FORMAT
-set leffile=STAGING_PATH/TECHNAME/libs.ref/lef/sky130_osu130/sky130_osu130.lef
-#else (!EF_FORMAT)
 set leffile=STAGING_PATH/TECHNAME/libs.ref/LIBRARY/lef/sky130_osu130.lef
-#endif (!EF_FORMAT)
 
 # The SPICE netlist containing subcell definitions for all the standard cells
-#ifdef EF_FORMAT
-set spicefile=STAGING_PATH/TECHNAME/libs.ref/spice/sky130_osu130/sky130_osu130.spice
-#else (!EF_FORMAT)
 set spicefile=STAGING_PATH/TECHNAME/libs.ref/LIBRARY/spice/sky130_osu130.spice
-#endif (!EF_FORMAT)
 
 # The liberty format file containing standard cell timing and function information
-#ifdef EF_FORMAT
-set libertyfile=STAGING_PATH/TECHNAME/libs.ref/lib/sky130_osu130/sky130_osu130.lib
-#else (!EF_FORMAT)
 set libertyfile=STAGING_PATH/TECHNAME/libs.ref/LIBRARY/lib/sky130_osu130.lib
-#endif (!EF_FORMAT)
 
 # If there is another LEF file containing technology information
 # that is separate from the file containing standard cell macros,
 # set this.  Otherwise, leave it defined as an empty string.
 
 #ifdef METAL5
-#ifdef EF_FORMAT
-set techleffile=STAGING_PATH/TECHNAME/libs.ref/techLEF/sky130_osu130/sky130_osu130_tech.lef
-#else (!EF_FORMAT)
 set techleffile=STAGING_PATH/TECHNAME/libs.ref/LIBRARY/techLEF/sky130_osu130_tech.lef
-#endif (!EF_FORMAT)
 #else
 # NOTE:  There is no technology LEF file for the 3-metal stack!
 #endif
@@ -71,13 +55,8 @@ set techfile=STAGING_PATH/TECHNAME/MAGIC_CURRENT/TECHNAME.tech	    ;# magic tech
 set magicrc=STAGING_PATH/TECHNAME/MAGIC_CURRENT/TECHNAME.magicrc    ;# magic startup script
 set magic_display="XR" 	;# magic display, defeat display query and OGL preference
 set netgen_setup=STAGING_PATH/TECHNAME/libs.tech/netgen/TECHNAME_setup.tcl	;# netgen setup file for LVS
-#ifdef EF_FORMAT
-set gdsfile=STAGING_PATH/TECHNAME/libs.ref/gds/LIBRARY/sky130_osu130.gds	;# GDS database of standard cells
-set verilogfile=STAGING_PATH/TECHNAME/libs.ref/verilog/LIBRARY/sky130_osu130.v	;# Verilog models of standard cells
-#else (!EF_FORMAT)
 set gdsfile=STAGING_PATH/TECHNAME/libs.ref/LIBRARY/gds/sky130_osu130.gds	;# GDS database of standard cells
 set verilogfile=STAGING_PATH/TECHNAME/libs.ref/LIBRARY/verilog/sky130_osu130.v	;# Verilog models of standard cells
-#endif (!EF_FORMAT)
 
 # Set a conditional default in the project_vars.sh file for this process
 set postproc_options=""
